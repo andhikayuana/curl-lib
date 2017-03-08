@@ -22,27 +22,40 @@ Simple wrapper for cURL using PHP.
 	$curl = new Curl();
 	
 	//http method GET
-	$curl->get('http://api.halo.com/users', [
+	$res = $curl->get('http://api.halo.com/users');
+
+	var_dump($res);
+
+	$res = $curl->get('http://api.halo.com/users', [
 		'users_id' => 2
 	]);
 
+	var_dump($res);
+
 	//http mehotd POST
-	$curl->post('http://api.halo.com/login', [
+	$res = $curl->post('http://api.halo.com/login', [
 		'username' => 'yuana',
 		'password' => 'yourpassword'
 	]);
 
+	var_dump($res);
+
 	//http method PUT
-	$curl->put('http://api.halo.com/users', [
+	$res = $curl->put('http://api.halo.com/users', [
 		'users_id' => 3,
 		'users_name' => 'Yuana Andhika',
 		'users_dept' => 'Android Developer'
 	]);
 
+	var_dump($res);
+
 	//http method DELETE
-	$curl->delete('http://api.halo.com/users', [
+	$res = $curl->delete('http://api.halo.com/users', [
 		'users_id' => 3
 	]);
+
+	var_dump($res);
+
 	```
 2. Codeigniter
 
@@ -51,27 +64,40 @@ Simple wrapper for cURL using PHP.
     $this->load->library('curl');
     
     //http method GET
-    $this->curl->get('http://api.halo.com/users', [
+	$res = $this->curl->get('http://api.halo.com/users');
+
+	var_dump($res);
+
+    $res = $this->curl->get('http://api.halo.com/users', [
         'users_id' => 3
     ]);
+
+    var_dump($res);
     
     //http method POST
-    $this->curl->post('http://api.halo.com/login', [
+    $res = $this->curl->post('http://api.halo.com/login', [
         'username' => 'jarjit',
         'password' => 'yourpassword'
     ]);
+
+    var_dump($res);
     
     //http method PUT
-    $this->curl->put('http://api.halo.com/users', [
+    $res = $this->curl->put('http://api.halo.com/users', [
         'users_id' => 3,
         'users_name' => 'jarjit',
         'users_dept' => 'Web Developer'
     ]);
+
+    var_dump($res);
     
     //http method DELETE
-    $this->curl->delete('http://api.halo.com/users', [
+    $res = $this->curl->delete('http://api.halo.com/users', [
         'users_id' => 4
     ]);
+
+    var_dump($res);
+
     ```
 
 ## Contributing
