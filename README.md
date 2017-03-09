@@ -56,6 +56,15 @@ Simple wrapper for cURL using PHP.
 
 	var_dump($res);
 
+	//override timeout [default 30]
+	$curl->timeout = 25;
+
+	//override redirection [default true]
+	$curl->isRedirect = false;
+
+	//override user agent [default from http user agent]
+	$curl->userAgent = 'Android App 1.1';
+
 	```
 2. Codeigniter
 
@@ -97,6 +106,15 @@ Simple wrapper for cURL using PHP.
     ]);
 
     var_dump($res);
+
+    //override timeout [default 30]
+	$this->curl->timeout = 25;
+
+	//override redirection [default true]
+	$this->curl->isRedirect = false;
+
+	//override user agent [default from http user agent]
+	$this->curl->userAgent = 'Android App 1.1';
 
     ```
 
