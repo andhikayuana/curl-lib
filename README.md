@@ -57,10 +57,10 @@ Simple wrapper for cURL using PHP.
 	var_dump($res);
 
     // to upload file
-    $res = $curl->upload('http://api.domain.com/upload', array(
+    $res = $curl->upload('http://api.domain.com/upload', [
         'fieldA' => '/path/to/file/fileA.jpg',
         'fieldB' => '/path/to/file/fileB.jpg',
-    ));
+    ]);
 
     var_dump($res);
 
@@ -74,9 +74,9 @@ Simple wrapper for cURL using PHP.
 	$curl->userAgent = 'Android App 1.1';
 
     //override headers
-    $curl->headers = array(
+    $curl->headers = [
       'Authorization' => 'Bearer yourtokenhere'
-    );
+    ];
 
 
 	```
@@ -122,10 +122,10 @@ Simple wrapper for cURL using PHP.
     var_dump($res);
 
     // to upload file
-    $res = $this->curl->upload('http://api.domain.com/upload', array(
+    $res = $this->curl->upload('http://api.domain.com/upload', [
         'fieldA' => '/path/to/file/fileA.jpg',
         'fieldB' => '/path/to/file/fileB.jpg',
-    ));
+    ]);
 
     var_dump($res);
 
@@ -139,9 +139,9 @@ Simple wrapper for cURL using PHP.
 	$this->curl->userAgent = 'Android App 1.1';
 
     //override headers
-    $this->curl->headers = array(
+    $this->curl->headers = [
       'Authorization' => 'Bearer yourtokenhere'
-    );
+    ];
 
     ```
 
