@@ -11,7 +11,7 @@
  *
  * require 'Curl.php';
  * and make instance :
- * 
+ *
  * $curl = new Curl();
  * $curl->get('http://api.halo.com/users,array(
  *      'users_id' => 3
@@ -27,20 +27,20 @@
  * load the library
  * `$this->load->library('curl');`
  * --------------------------------------
- * 
+ *
  * HEADERS
  * add some header like this
  * $this->curl->headers = array(
  *      'X-API-KEY' => 'randomapikeyhere',
  *      'some-header-key' => 'some-header-value'
  * );
- * 
+ *
  * POST
  * $res = $this->curl->post('http://api.domain.com/login', array(
  * 	'email' => 'jarjit@domain.com',
  * 	'password' => 'helloworld'
  * ));
- * 		
+ *
  * var_dump($res);
  *
  * GET
@@ -49,11 +49,11 @@
  * ));
  *
  * var_dump($res);
- * 
- * another method 
+ *
+ * another method
  * PUT
  * $this->curl->put($url, array('field' => 'val'));
- * 
+ *
  * DELETE
  * $this->curl->delete($url, array('field' => 'val'));
  *
@@ -63,12 +63,24 @@
  * REDIRECT [default TRUE]
  * $this->curl->isRedirect = false;
  *
+ * HEADERS
+ * $this->curl->headers = array(
+ *     'Authorization' => 'Bearer yourtokenhere'
+ * );
+ *
+ * UPLOAD
+ * $this->curl->upload('http://api.domain.com/upload', array(
+ *     'fieldA' => '/path/to/file/fileA.jpg',
+ *     'fieldB' => '/path/to/file/fileB.jpg',
+ * ));
+ *
  * TODO :
- * 1. upload file
- * 2. proxy
- * 3. composer package
+ * 1. proxy
+ * 2. composer package
  */
 class Curl {
+
+    const VERSION = 'Curl-PHP-' . PHP_VERSION;
 
     /**
      * @var http methods
@@ -121,9 +133,15 @@ class Curl {
      */
     public $userAgent;
 
+    /**
+     * [$files property for upload file]
+     * @var array
+     */
+    private $files = array();
+
     public function __construct() {
 
-        $this->userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : 'Curl-PHP-' . PHP_VERSION;
+        $this->userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : self::VERSION;
     }
 
     /**
@@ -168,6 +186,65 @@ class Curl {
      */
     public function delete($url, $vars = array()) {
         return $this->request(self::DELETE, $url, $vars);
+    }
+
+    /**
+     * [upload]
+     * @param  string $url
+     * @param  array  $vars [file as key->value]
+     * @return string response
+     */
+    public function upload($url, $vars = array()) {
+
+        foreach ($vars as $fieldName => $fileName) {
+            $this->files[] = [
+                'type'      => 'file',
+                'fieldname' => $fieldName,
+                'file'      => $fileName,
+                'basename'  => null,
+                'mime_type' => null,
+            ];
+        }
+
+        $this->headers = array(
+            'Content-Type' => self::MIME_FORM_DATA
+        );
+
+        return $this->request(self::POST, $url, $this->generateBoundary());
+    }
+
+    /**
+     * [generateBoundary]
+     * @return boundary
+     */
+    private function generateBoundary()
+    {
+        $eol = PHP_EOL;
+        $boundary = '----' . self::VERSION . md5(microtime());
+        $this->headers['Content-Type'] = self::MIME_FORM_DATA . "; boundary=$boundary";
+        $data = [];
+
+        foreach ($this->files as $file) {
+            if ($file['type'] === 'file') {
+                if (empty($file['basename'])) {
+                    $file['basename'] = basename($file['file']);
+                }
+                if (empty($file['mime_type'])) {
+                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                    $file['mime_type'] = finfo_file($finfo, $file['file']);
+                    finfo_close($finfo);
+                }
+            }
+            if (empty($file['mime_type'])) {
+                $file['mime_type'] = 'application/octet-stream';
+            }
+            $data[] = "--$boundary$eol";
+            $data[] = "Content-Disposition: form-data; name=\"{$file['fieldname']}\"; filename=\"{$file['basename']}\"$eol";
+            $data[] = "Content-Type: {$file['mime_type']}$eol$eol";
+            $data[] = ($file['type'] === 'file' ? file_get_contents($file['file']) : $file['file']) . $eol;
+        }
+        $data[] = "--$boundary--$eol$eol";
+        return implode('', $data);
     }
 
     /**

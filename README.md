@@ -20,7 +20,7 @@ Simple wrapper for cURL using PHP.
 	```php
 	//create instance
 	$curl = new Curl();
-	
+
 	//http method GET
 	$res = $curl->get('http://api.halo.com/users');
 
@@ -56,6 +56,14 @@ Simple wrapper for cURL using PHP.
 
 	var_dump($res);
 
+    // to upload file
+    $res = $curl->upload('http://api.domain.com/upload', array(
+        'fieldA' => '/path/to/file/fileA.jpg',
+        'fieldB' => '/path/to/file/fileB.jpg',
+    ));
+
+    var_dump($res);
+
 	//override timeout [default 30]
 	$curl->timeout = 25;
 
@@ -65,13 +73,19 @@ Simple wrapper for cURL using PHP.
 	//override user agent [default from http user agent]
 	$curl->userAgent = 'Android App 1.1';
 
+    //override headers
+    $curl->headers = array(
+      'Authorization' => 'Bearer yourtokenhere'
+    );
+
+
 	```
 2. Codeigniter
 
     ```php
     //load the library
     $this->load->library('curl');
-    
+
     //http method GET
 	$res = $this->curl->get('http://api.halo.com/users');
 
@@ -82,7 +96,7 @@ Simple wrapper for cURL using PHP.
     ]);
 
     var_dump($res);
-    
+
     //http method POST
     $res = $this->curl->post('http://api.halo.com/login', [
         'username' => 'jarjit',
@@ -90,7 +104,7 @@ Simple wrapper for cURL using PHP.
     ]);
 
     var_dump($res);
-    
+
     //http method PUT
     $res = $this->curl->put('http://api.halo.com/users', [
         'users_id' => 3,
@@ -99,11 +113,19 @@ Simple wrapper for cURL using PHP.
     ]);
 
     var_dump($res);
-    
+
     //http method DELETE
     $res = $this->curl->delete('http://api.halo.com/users', [
         'users_id' => 4
     ]);
+
+    var_dump($res);
+
+    // to upload file
+    $res = $this->curl->upload('http://api.domain.com/upload', array(
+        'fieldA' => '/path/to/file/fileA.jpg',
+        'fieldB' => '/path/to/file/fileB.jpg',
+    ));
 
     var_dump($res);
 
@@ -115,6 +137,11 @@ Simple wrapper for cURL using PHP.
 
 	//override user agent [default from http user agent]
 	$this->curl->userAgent = 'Android App 1.1';
+
+    //override headers
+    $this->curl->headers = array(
+      'Authorization' => 'Bearer yourtokenhere'
+    );
 
     ```
 
@@ -128,9 +155,8 @@ Simple wrapper for cURL using PHP.
 
 ## Todos
 
-1. Upload File
-2. Proxy
-3. Composer Package
+1. Proxy
+2. Composer Package
 
 ## License
 
