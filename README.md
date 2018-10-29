@@ -37,38 +37,38 @@ Simple wrapper for cURL using PHP.
 
     HTTP POST method
     ```php
-	//http method POST
 	$res = $curl->post('http://api.halo.com/login', [
 		'username' => 'yuana',
 		'password' => 'yourpassword'
-	]);
+    ]);
+    ```
 
-	var_dump($res);
-
-	//http method PUT
+    HTTP PUT method
+    ```php
 	$res = $curl->put('http://api.halo.com/users', [
 		'users_id' => 3,
 		'users_name' => 'Yuana Andhika',
 		'users_dept' => 'Android Developer'
-	]);
+    ]);
+    ```
 
-	var_dump($res);
-
-	//http method DELETE
+    HTTP DELETE method
+    ```php
 	$res = $curl->delete('http://api.halo.com/users', [
 		'users_id' => 3
-	]);
+    ]);
+    ```
 
-	var_dump($res);
-
-    // to upload file
+    Uploading file
+    ```php
     $res = $curl->upload('http://api.domain.com/upload', [
         'fieldA' => '/path/to/file/fileA.jpg',
         'fieldB' => '/path/to/file/fileB.jpg',
     ]);
+    ```
 
-    var_dump($res);
-
+    Configuration
+    ```php
 	//override timeout [default 30]
 	$curl->timeout = 25;
 
@@ -82,8 +82,6 @@ Simple wrapper for cURL using PHP.
     $curl->headers = [
       'Authorization' => 'Bearer yourtokenhere'
     ];
-
-
 	```
 2. Codeigniter
 
