@@ -8,7 +8,9 @@ Simple wrapper for cURL using PHP.
 	- Please place `Curl.php` at your location you want.
 	- Require the `Curl.php` at your php file.
 	```php
-	require 'Curl.php';
+    require 'Curl.php';
+    // or
+    require_once 'Curl.php';
 	```
 2. Codeigniter
 	- Please place `Curl.php` at `application/libraries` directory
@@ -17,22 +19,25 @@ Simple wrapper for cURL using PHP.
 
 1. Native PHP
 
+    Create instance
 	```php
-	//create instance
-	$curl = new Curl();
+    $curl = new Curl();
+    ```
 
-	//http method GET
+    HTTP GET method
+    ```php
 	$res = $curl->get('http://api.halo.com/users');
 
-	var_dump($res);
-
+    // using query
+    // http://api.halo.com/users?users_id=2
 	$res = $curl->get('http://api.halo.com/users', [
 		'users_id' => 2
-	]);
+    ]);
+    ```
 
-	var_dump($res);
-
-	//http mehotd POST
+    HTTP POST method
+    ```php
+	//http method POST
 	$res = $curl->post('http://api.halo.com/login', [
 		'username' => 'yuana',
 		'password' => 'yourpassword'
@@ -146,6 +151,7 @@ Simple wrapper for cURL using PHP.
     ```
 
 ## Contributing
+
 Feel free to check [CONTRIBUTING.md](./CONTRIBUTING.md) file
 
 ## Todos
