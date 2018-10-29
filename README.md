@@ -84,54 +84,56 @@ Simple wrapper for cURL using PHP.
     ];
 	```
 2. Codeigniter
-
+    Load the library from /application/library/Curl.php
     ```php
-    //load the library
     $this->load->library('curl');
+    ```
 
-    //http method GET
-	$res = $this->curl->get('http://api.halo.com/users');
-
-	var_dump($res);
-
+    HTTP GET method
+    ```php
+    $res = $this->curl->get('http://api.halo.com/users');
+    
+    // using query
+    // http://api.halo.com/users?users_id=2
     $res = $this->curl->get('http://api.halo.com/users', [
         'users_id' => 3
     ]);
+    ```
 
-    var_dump($res);
-
-    //http method POST
+    HTTP POST method
+    ```php
     $res = $this->curl->post('http://api.halo.com/login', [
         'username' => 'jarjit',
         'password' => 'yourpassword'
     ]);
+    ```
 
-    var_dump($res);
-
-    //http method PUT
+    HTTP PUT method
+    ```php
     $res = $this->curl->put('http://api.halo.com/users', [
         'users_id' => 3,
         'users_name' => 'jarjit',
         'users_dept' => 'Web Developer'
     ]);
+    ```
 
-    var_dump($res);
-
-    //http method DELETE
+    HTTP DELETE method
+    ```php
     $res = $this->curl->delete('http://api.halo.com/users', [
         'users_id' => 4
     ]);
+    ```
 
-    var_dump($res);
-
-    // to upload file
+    Uploading file
+    ```php
     $res = $this->curl->upload('http://api.domain.com/upload', [
         'fieldA' => '/path/to/file/fileA.jpg',
         'fieldB' => '/path/to/file/fileB.jpg',
     ]);
+    ```
 
-    var_dump($res);
-
+    Configuration
+    ```php
     //override timeout [default 30]
 	$this->curl->timeout = 25;
 
