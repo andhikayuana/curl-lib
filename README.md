@@ -2,6 +2,8 @@
 
 Simple wrapper for cURL using PHP.
 
+**NEED UPDATE THIS DOCUMENTATION**
+
 ## Installation
 
 1. Native PHP
@@ -12,6 +14,7 @@ Simple wrapper for cURL using PHP.
 	```
 2. Codeigniter
 	- Please place `Curl.php` at `application/libraries` directory
+
 
 ## Usage
 
