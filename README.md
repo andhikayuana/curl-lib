@@ -2,7 +2,7 @@
 
 Simple wrapper for cURL using PHP.
 
-> **_NOTE:_**  Supported composer package from v2.0.0, If you need native version you can check [v1.0.0](https://github.com/andhikayuana/curl-lib/tree/v1.0.0)
+> **_NOTE:_**  Supported composer package from [v2.0.0](https://github.com/andhikayuana/curl-lib/tree/v2.0.0), If you need native version you can check [v1.0.0](https://github.com/andhikayuana/curl-lib/tree/v1.0.0)
 
 ## Installation
 
