@@ -1,0 +1,19 @@
+{
+    "name": "andhikayuana/curl-lib",
+    "description": "simple curl library",
+    "version": "2.0.0",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ANDHIKA YUANA",
+            "email": "andhikayuana@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Yuana\\": "src/"
+        }
+    }
+}

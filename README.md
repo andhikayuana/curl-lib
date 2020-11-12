@@ -2,6 +2,8 @@
 
 Simple wrapper for cURL using PHP.
 
+> **_NOTE:_**  If you need native version you can check [v1.0.0](https://github.com/andhikayuana/curl-lib/tree/v1.0.0)
+
 ## Installation
 
 1. Native PHP
@@ -14,6 +16,7 @@ Simple wrapper for cURL using PHP.
 	```
 2. Codeigniter
 	- Please place `Curl.php` at `application/libraries` directory
+
 
 ## Usage
 
@@ -156,5 +159,5 @@ Feel free to check [CONTRIBUTING.md](./CONTRIBUTING.md) file
 
 ## Todos
 
-1. Proxy
-2. Composer Package
+- [ ] Proxy
+- [x] Composer Package

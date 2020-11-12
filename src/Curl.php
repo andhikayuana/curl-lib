@@ -1,5 +1,7 @@
 <?php
 
+namespace Yuana;
+
 /**
  * Simple wrapper for cURL
  * @author Yuana <andhikayuana@gmail.com>
