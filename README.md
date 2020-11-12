@@ -10,7 +10,9 @@ Simple wrapper for cURL using PHP.
 	- Please place `Curl.php` at your location you want.
 	- Require the `Curl.php` at your php file.
 	```php
-	require 'Curl.php';
+    require 'Curl.php';
+    // or
+    require_once 'Curl.php';
 	```
 2. Codeigniter
 	- Please place `Curl.php` at `application/libraries` directory
@@ -20,53 +22,56 @@ Simple wrapper for cURL using PHP.
 
 1. Native PHP
 
+    Create instance
 	```php
-	//create instance
-	$curl = new Curl();
+    $curl = new Curl();
+    ```
 
-	//http method GET
+    HTTP GET method
+    ```php
 	$res = $curl->get('http://api.halo.com/users');
 
-	var_dump($res);
-
+    // using query
+    // http://api.halo.com/users?users_id=2
 	$res = $curl->get('http://api.halo.com/users', [
 		'users_id' => 2
-	]);
+    ]);
+    ```
 
-	var_dump($res);
-
-	//http mehotd POST
+    HTTP POST method
+    ```php
 	$res = $curl->post('http://api.halo.com/login', [
 		'username' => 'yuana',
 		'password' => 'yourpassword'
-	]);
+    ]);
+    ```
 
-	var_dump($res);
-
-	//http method PUT
+    HTTP PUT method
+    ```php
 	$res = $curl->put('http://api.halo.com/users', [
 		'users_id' => 3,
 		'users_name' => 'Yuana Andhika',
 		'users_dept' => 'Android Developer'
-	]);
+    ]);
+    ```
 
-	var_dump($res);
-
-	//http method DELETE
+    HTTP DELETE method
+    ```php
 	$res = $curl->delete('http://api.halo.com/users', [
 		'users_id' => 3
-	]);
+    ]);
+    ```
 
-	var_dump($res);
-
-    // to upload file
+    Uploading file
+    ```php
     $res = $curl->upload('http://api.domain.com/upload', [
         'fieldA' => '/path/to/file/fileA.jpg',
         'fieldB' => '/path/to/file/fileB.jpg',
     ]);
+    ```
 
-    var_dump($res);
-
+    Configuration
+    ```php
 	//override timeout [default 30]
 	$curl->timeout = 25;
 
@@ -80,58 +85,58 @@ Simple wrapper for cURL using PHP.
     $curl->headers = [
       'Authorization' => 'Bearer yourtokenhere'
     ];
-
-
 	```
 2. Codeigniter
-
+    Load the library from /application/library/Curl.php
     ```php
-    //load the library
     $this->load->library('curl');
+    ```
 
-    //http method GET
-	$res = $this->curl->get('http://api.halo.com/users');
-
-	var_dump($res);
-
+    HTTP GET method
+    ```php
+    $res = $this->curl->get('http://api.halo.com/users');
+    
+    // using query
+    // http://api.halo.com/users?users_id=2
     $res = $this->curl->get('http://api.halo.com/users', [
         'users_id' => 3
     ]);
+    ```
 
-    var_dump($res);
-
-    //http method POST
+    HTTP POST method
+    ```php
     $res = $this->curl->post('http://api.halo.com/login', [
         'username' => 'jarjit',
         'password' => 'yourpassword'
     ]);
+    ```
 
-    var_dump($res);
-
-    //http method PUT
+    HTTP PUT method
+    ```php
     $res = $this->curl->put('http://api.halo.com/users', [
         'users_id' => 3,
         'users_name' => 'jarjit',
         'users_dept' => 'Web Developer'
     ]);
+    ```
 
-    var_dump($res);
-
-    //http method DELETE
+    HTTP DELETE method
+    ```php
     $res = $this->curl->delete('http://api.halo.com/users', [
         'users_id' => 4
     ]);
+    ```
 
-    var_dump($res);
-
-    // to upload file
+    Uploading file
+    ```php
     $res = $this->curl->upload('http://api.domain.com/upload', [
         'fieldA' => '/path/to/file/fileA.jpg',
         'fieldB' => '/path/to/file/fileB.jpg',
     ]);
+    ```
 
-    var_dump($res);
-
+    Configuration
+    ```php
     //override timeout [default 30]
 	$this->curl->timeout = 25;
 
@@ -150,37 +155,9 @@ Simple wrapper for cURL using PHP.
 
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+Feel free to check [CONTRIBUTING.md](./CONTRIBUTING.md) file
 
 ## Todos
 
 1. Proxy
 2. Composer Package
-
-## License
-
-MIT License
-
-Copyright (c) 2017 Andhika Yuana
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
