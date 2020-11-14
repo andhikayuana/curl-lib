@@ -10,11 +10,12 @@ Simple wrapper for cURL using PHP.
 composer require andhikayuana/curl-lib
 ```
 
-
 ## Usage
 
 Create instance
 ```php
+require 'vendor/autoload.php';
+
 $curl = new \Yuana\Curl();
 ```
 

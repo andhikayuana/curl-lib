@@ -5,80 +5,77 @@ namespace Yuana;
 /**
  * Simple wrapper for cURL
  * @author Yuana <andhikayuana@gmail.com>
- * @since March, 3 2017
+ * @since November, 15 2020
  * @license MIT
- *
- * --------------------------------------
- * How to use with native PHP
- *
- * require 'Curl.php';
- * and make instance :
- *
- * $curl = new Curl();
- * $curl->get('http://api.halo.com/users,array(
- *      'users_id' => 3
- * ));
- * --------------------------------------
- *
- * --------------------------------------
- * How to use this library for Codeigniter
- * --------------------------------------
- *
- * copy Curl.php to `application/libraries`
- *
- * load the library
- * `$this->load->library('curl');`
- * --------------------------------------
- *
- * HEADERS
- * add some header like this
- * $this->curl->headers = array(
- *      'X-API-KEY' => 'randomapikeyhere',
- *      'some-header-key' => 'some-header-value'
- * );
- *
- * POST
- * $res = $this->curl->post('http://api.domain.com/login', array(
- * 	'email' => 'jarjit@domain.com',
- * 	'password' => 'helloworld'
- * ));
- *
- * var_dump($res);
- *
- * GET
- * $res = $this->curl->get('http://api.domain.com/trips', array(
- * 	'trips_id' => 2
- * ));
- *
- * var_dump($res);
- *
- * another method
- * PUT
- * $this->curl->put($url, array('field' => 'val'));
- *
- * DELETE
- * $this->curl->delete($url, array('field' => 'val'));
- *
- * TIMEOUT [default 30 sec.]
- * $this->curl->timeout = 60;
- *
- * REDIRECT [default TRUE]
- * $this->curl->isRedirect = false;
- *
- * HEADERS
- * $this->curl->headers = array(
- *     'Authorization' => 'Bearer yourtokenhere'
- * );
- *
- * UPLOAD
- * $this->curl->upload('http://api.domain.com/upload', array(
+ * 
+ * =================================================
+ * 
+ * Create instance
+ * ```php
+ * require 'vendor/autoload.php';
+ * 
+ * $curl = new \Yuana\Curl();
+ * ```
+ * 
+ * HTTP GET method
+ * ```php
+ * $res = $curl->get('http://api.halo.com/users');
+ * 
+ * // using query
+ * // http://api.halo.com/users?users_id=2
+ * $res = $curl->get('http://api.halo.com/users', [
+ *     'users_id' => 2
+ * ]);
+ * ```
+ * 
+ * HTTP POST method
+ * ```php
+ * $res = $curl->post('http://api.halo.com/login', [
+ *     'username' => 'yuana',
+ *     'password' => 'yourpassword'
+ * ]);
+ * ```
+ * 
+ * HTTP PUT method
+ * ```php
+ * $res = $curl->put('http://api.halo.com/users', [
+ *     'users_id' => 3,
+ *     'users_name' => 'Yuana Andhika',
+ *     'users_dept' => 'Android Developer'
+ * ]);
+ * ```
+ * 
+ * HTTP DELETE method
+ * ```php
+ * $res = $curl->delete('http://api.halo.com/users', [
+ *     'users_id' => 3
+ * ]);
+ * ```
+ * 
+ * Uploading file
+ * ```php
+ * $res = $curl->upload('http://api.domain.com/upload', [
  *     'fieldA' => '/path/to/file/fileA.jpg',
  *     'fieldB' => '/path/to/file/fileB.jpg',
- * ));
- *
- * TODO :
- * 1. proxy
- * 2. composer package
+ * ]);
+ * ```
+ * 
+ * Configuration
+ * ```php
+ * //override timeout [default 30]
+ * $curl->timeout = 25;
+ * 
+ * //override redirection [default true]
+ * $curl->isRedirect = false;
+ * 
+ * //override user agent [default from http user agent]
+ * $curl->userAgent = 'Android App 1.1';
+ * 
+ * //override headers
+ * $curl->headers = [
+ *     'Authorization' => 'Bearer yourtokenhere'
+ * ];
+ * ```
  */
 class Curl {
 
