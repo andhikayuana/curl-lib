@@ -1,5 +1,9 @@
 # Simple cURL Library
 
+![](https://badgen.net/github/release/andhikayuana/curl-lib?icon=github&color=green)
+![](https://badgen.net/packagist/v/andhikayuana/curl-lib?color=orange)
+![](https://badgen.net/packagist/license/andhikayuana/curl-lib)
+
 Simple wrapper for cURL using PHP.
 
 > **_NOTE:_**  Supported composer package from v2.0.0, If you need native version you can check [v1.0.0](https://github.com/andhikayuana/curl-lib/tree/v1.0.0)
