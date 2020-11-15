@@ -87,3 +87,7 @@ Feel free to check [CONTRIBUTING.md](./CONTRIBUTING.md) file
 
 - [ ] Proxy
 - [x] Composer Package
+
+## Donation
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/T6T02OS5W)
