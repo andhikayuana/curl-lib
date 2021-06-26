@@ -157,8 +157,6 @@ class Curl
             $url .= (stripos($url, '?') !== false) ? '&' : '?';
             $url .= (is_string($vars)) ? $vars : http_build_query($vars, '', '&');
         }
-        echo $url;
-        echo "<br>";
         return $this->request(self::GET, $url);
     }
 
