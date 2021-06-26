@@ -1,8 +1,13 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
-
+$startTime = microtime(true);
 $curl = new \Yuana\Curl();
-$response = $curl->get('http://belanja-api.herokuapp.com');
+for ($i=0; $i < 10; $i++) { 
+    $response = $curl->get('http://belanja-api.herokuapp.com', ["users_id" => 2]);
+}
+$finishTime = microtime(true);
 
-echo $response;
+echo "Time elapsed: ". $response;
+echo "<br>";  
+echo $finishTime - $startTime;
