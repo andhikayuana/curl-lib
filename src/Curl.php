@@ -77,7 +77,8 @@ namespace Yuana;
  * ];
  * ```
  */
-class Curl {
+class Curl
+{
 
     const VERSION = 'Curl-PHP-' . PHP_VERSION;
 
@@ -138,7 +139,8 @@ class Curl {
      */
     private $files = array();
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : self::VERSION;
     }
@@ -149,8 +151,9 @@ class Curl {
      * @param  array  $vars queryParams
      * @return string response
      */
-    public function get($url, $vars = array()) {
-        if (!empty($vars)) {
+    public function get($url, $vars = null)
+    {
+        if (isset($vars)) {
             $url .= (stripos($url, '?') !== false) ? '&' : '?';
             $url .= (is_string($vars)) ? $vars : http_build_query($vars, '', '&');
         }
@@ -163,7 +166,8 @@ class Curl {
      * @param  array  $vars postFields
      * @return string response
      */
-    public function post($url, $vars = array()) {
+    public function post($url, $vars = array())
+    {
         return $this->request(self::POST, $url, $vars);
     }
 
@@ -173,7 +177,8 @@ class Curl {
      * @param  array  $vars postFields
      * @return string response
      */
-    public function put($url, $vars = array()) {
+    public function put($url, $vars = array())
+    {
         return $this->request(self::PUT, $url, $vars);
     }
 
@@ -183,7 +188,8 @@ class Curl {
      * @param  array  $vars postFields
      * @return string response
      */
-    public function delete($url, $vars = array()) {
+    public function delete($url, $vars = array())
+    {
         return $this->request(self::DELETE, $url, $vars);
     }
 
@@ -193,7 +199,8 @@ class Curl {
      * @param  array  $vars [file as key->value]
      * @return string response
      */
-    public function upload($url, $vars = array()) {
+    public function upload($url, $vars = array())
+    {
 
         foreach ($vars as $fieldName => $fileName) {
             $this->files[] = [
@@ -253,7 +260,8 @@ class Curl {
      * @param  array  $vars
      * @return string response
      */
-    private function request($method, $url, $vars = array()) {
+    private function request($method, $url, $vars = array())
+    {
         $this->error = '';
         $this->request = curl_init();
         if (is_array($vars))
@@ -271,7 +279,8 @@ class Curl {
      * @param string $method
      * @return void
      */
-    private function setRequestMethod($method) {
+    private function setRequestMethod($method)
+    {
 
         switch ($method) {
             case self::GET:
@@ -294,7 +303,8 @@ class Curl {
      * @param string $vars
      * @return void
      */
-    private function setRequestOptions($url, $vars) {
+    private function setRequestOptions($url, $vars)
+    {
 
         curl_setopt($this->request, CURLOPT_URL, $url);
         curl_setopt($this->request, CURLOPT_TIMEOUT, $this->timeout);
@@ -313,7 +323,8 @@ class Curl {
      * [setRequestHeaders]
      * @return void
      */
-    private function setRequestHeaders() {
+    private function setRequestHeaders()
+    {
         $headers = array();
         foreach ($this->headers as $key => $value) {
             $headers[] = $key . ': ' . $value;
@@ -325,7 +336,8 @@ class Curl {
      * [generateResponse]
      * @return string response
      */
-    private function generateResponse() {
+    private function generateResponse()
+    {
 
         $response = curl_exec($this->request);
         $header_size = curl_getinfo($this->request, CURLINFO_HEADER_SIZE);
@@ -340,5 +352,4 @@ class Curl {
 
         return $content;
     }
-
 }
